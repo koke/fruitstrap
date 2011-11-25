@@ -1,6 +1,6 @@
 IOS_CC = /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc
 
-all: demo.app fruitstrap
+all: demo.app fruitstrap remotedebug
 
 demo.app: demo Info.plist
 	mkdir -p demo.app
@@ -13,6 +13,10 @@ demo: demo.c
 
 fruitstrap: fruitstrap.c
 	gcc -o fruitstrap -framework CoreFoundation -framework MobileDevice -F/System/Library/PrivateFrameworks fruitstrap.c
+
+remotedebug: remotedebug.c
+	gcc -g -o remotedebug -framework CoreFoundation -framework MobileDevice -F/System/Library/PrivateFrameworks remotedebug.c
+
 
 install: all
 	./fruitstrap demo.app
